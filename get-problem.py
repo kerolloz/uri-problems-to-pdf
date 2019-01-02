@@ -1,4 +1,6 @@
 import pdfkit
+import re
+
 
 def download_problem_pdf(url, name):
     options = {
@@ -10,12 +12,19 @@ def download_problem_pdf(url, name):
     pdfkit.from_url(url, name, options=options)
 
 
+def problem_link_checker(url):
+    link_format = 'https://www.urionlinejudge.com.br/repository/UOJ_{number}_en.html'
+    number = re.find_all("[0-9]\d+")
+    print(link_format.format({'number': number}))
+
+
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
+    '''if len(sys.argv) < 3:
         print("Please provide the problem link and the pdf name")
         exit(1)
     link = sys.argv[1]
     out_name = sys.argv[2]
     pdf_name = "original_problem.pdf"
     download_problem_pdf(link, pdf_name)
-    cut_problem_pdf(pdf_name, out_name)
+    cut_problem_pdf(pdf_name, out_name)'''
+    problem_link_checker("")
