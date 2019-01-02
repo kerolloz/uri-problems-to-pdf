@@ -22,10 +22,12 @@ def problem_link_checker(url):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Please provide the problem link and the pdf name")
+    if len(sys.argv) < 2:
+        print("Please provide the problem link")
         exit(1)
     link = sys.argv[1]
-    out_name = sys.argv[2]
-    pdf_name = "original_problem.pdf"
-    download_problem_pdf(link, pdf_name)
+    link = problem_link_checker(link)
+    if link == None:
+        print("Please provide a valid problem link")
+    out_name = "problem.pdf"
+    download_problem_pdf(link, out_name)
